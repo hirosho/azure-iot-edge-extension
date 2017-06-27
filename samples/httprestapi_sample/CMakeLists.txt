@@ -33,26 +33,4 @@ linkSharedUtil(httprestapi_sample)
 install_broker(httprestapi_sample ${CMAKE_CURRENT_BINARY_DIR}/$(Configuration) )
 copy_gateway_dll(httprestapi_sample ${CMAKE_CURRENT_BINARY_DIR}/$(Configuration) )
 
-#copy_cpprest_dll(httprestapi_sample ${CPPREST_LIBRARIES})
-if(!WIN32)
-  set (CPPREST_ROOT ${CMAKE_CURRENT_BINARY_DIR}/../../modules/httprestapi/$(Configuration))
-  set(CPPREST_LIBRARIES
-        ${CPPREST_ROOT}/cpprest_2_9.dll
-        ${CPPREST_ROOT}/LIBEAY32.dll
-        ${CPPREST_ROOT}/SSLEAY32.dll
-    )
-  add_custom_command(TARGET httprestapi_sample POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E copy_if_different
-          ${CPPREST_LIBRARIES}
-          ${CMAKE_CURRENT_BINARY_DIR}/$(Configuration))
-  set(CPPRESTB_LIBRARIES
-        ${CPPREST_ROOT}/boost_date_time-vc141-mt-1_64.dll
-        ${CPPREST_ROOT}/boost_system-vc141-mt-1_64.dll
-    )
-    add_custom_command(TARGET httprestapi_sample POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E copy_if_different
-          ${CPPRESTB_LIBRARIES}
-          ${CMAKE_CURRENT_BINARY_DIR}/$(Configuration))
-endif()
-
 add_sample_to_solution(httprestapi_sample)

@@ -1,7 +1,10 @@
 #Copyright (c) Microsoft. All rights reserved.
 #Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-# please add below statement in CMakeLists.txt of modules folder
-add_subdirectory(httprestapi)
+cmake_minimum_required(VERSION 2.8.12)
 
-add_subdirectory(filter)
+#include("dependencies.cmake")
+
+add_subdirectory(ticc2650)
+add_subdirectory(ticc2541)
+
